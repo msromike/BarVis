@@ -1,0 +1,8 @@
+<Bindings>
+	<!-- BarVis. MIT, see LICENSE.
+	     One row in Blizzard's Key Bindings screen, unbound until the player picks a key.
+	     The key opens the BarVis window, or closes it if it is already open. -->
+	<Binding name="BARVIS_TOGGLE" category="BarVis">
+		LibStub("AceAddon-3.0"):GetAddon("BarVis"):GetModule("Window"):Toggle()
+	</Binding>
+</Bindings>
