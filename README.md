@@ -42,6 +42,8 @@ In combat, EllesmereUI holds the change until combat ends.
 | `/barvis mouseover N` | Show bar N only on mouseover |
 | `/barvis gui` | Opens the window too |
 
+![/barvis help in chat](media/help.png)
+
 N is a bar number from 1 to 10, or `all` for every bar. Tab autocompletes both words in chat: the command, then the bar number or `all`. The minimap button setting is shared by every character on the account.
 
 ## What can break it
