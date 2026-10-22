@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 (unreleased)
+## 1.0.0 (2026-10-22)
 
 First version. WoW Forever only; requires EllesmereUI Action Bars.
 
