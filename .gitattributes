@@ -6,3 +6,4 @@
 .gitignore export-ignore
 .luacheckrc export-ignore
 .pkgmeta export-ignore
+media/ export-ignore

@@ -180,7 +180,7 @@ local function BuildTable()
             type = "input", order = i,
             dialogHidden = true,
             name = m.label,
-            desc = L["Set a bar to %s. Use: /barvis %s <1-10|all>"]:format(m.label, m.word),
+            desc = L["Set a bar to %s. Use: /barvis %s <1-10 || all>"]:format(m.label, m.word),
             validate = ValidateChatBar,
             get = function() return "" end,
             set = function(_, value)

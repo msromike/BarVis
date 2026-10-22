@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.1 (2026-10-22)
+
+- `/barvis help` shows `<1-10 | all>`; 1.0.0 printed `<1-10|ll>`, because the game reads
+  `|a` in chat as the start of a formatting code.
+
 ## 1.0.0 (2026-10-22)
 
 First public version. WoW Forever only; requires EllesmereUI with its Action Bars module.

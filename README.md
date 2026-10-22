@@ -6,6 +6,8 @@ Show, hide or mouseover any EllesmereUI action bar from a small window, a key bi
 
 **[Download BarVis](https://github.com/msromike/BarVis/releases/latest/download/BarVis.zip)** (latest release, ready to unzip into `Interface\AddOns`)
 
+![The BarVis window](media/window.png)
+
 BarVis changes the same Visibility setting as the dropdown in EllesmereUI's Action Bars options, so the change sticks across reloads and shows up there too.
 
 ## Requires

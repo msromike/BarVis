@@ -2,7 +2,7 @@
 ## Title: BarVis
 ## Notes: Set an EllesmereUI action bar to Show, Hide or Mouseover. /barvis, a key binding or the minimap button opens the window.
 ## Author: msromike
-## Version: 1.0.0
+## Version: 1.0.1
 ## X-License: MIT
 ## X-Website: https://github.com/msromike/BarVis
 ## Dependencies: EllesmereUI, EllesmereUIActionBars
