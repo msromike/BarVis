@@ -4,8 +4,8 @@
 -- options table through `dialogControl`. AceConfigDialog drives them exactly like the
 -- originals. Same pattern as SoulShardForever's Widgets\SSFCentered.lua.
 --   BarVisCenteredLabel   : a Label with centered text (the status line).
---   BarVisCenteredEditBox : an EditBox of fixed width, centered in its row, label centered
---                           above it (the bar number box).
+--   BarVisCenteredDropdown: a Dropdown of fixed width, centered in its row, label centered
+--                           above it (the bar picker).
 --   BarVisCenteredCheckBox: a CheckBox sized to its text and centered in its row (the
 --                           minimap button toggle). Same as SSF's SSFCenteredCheckBox.
 -- All are built by composition: the real widget sits inside ours and every call is
@@ -61,15 +61,15 @@ do
 end
 
 -------------------------------------------------------------------------------
--- BarVisCenteredEditBox
+-- BarVisCenteredDropdown
 -------------------------------------------------------------------------------
 do
-    local Type, Version = "BarVisCenteredEditBox", 1
-    local BOX_WIDTH = 110 -- two digits plus the Okay button the EditBox shows while typing
+    local Type, Version = "BarVisCenteredDropdown", 1
+    local DROP_WIDTH = 110 -- "10" or "All" and the arrow, with air
 
-    -- our height and row alignment follow the inner box (SetLabel changes both)
+    -- our height and row alignment follow the inner dropdown (SetLabel changes both)
     local function Sync(self)
-        self:SetHeight(self.inner.frame.height or self.inner.frame:GetHeight() or 26)
+        self:SetHeight(self.inner.frame.height or self.inner.frame:GetHeight() or 40)
         self.alignoffset = self.inner.alignoffset
     end
 
@@ -77,35 +77,31 @@ do
         ["OnAcquire"] = function(self)
             self:SetWidth(200)
             self.inner:SetDisabled(false)
-            self.inner:SetText()
-            self.inner:DisableButton(false)
-            self.inner:SetMaxLetters(0)
+            self.inner:SetValue(nil)
             self:SetLabel()
         end,
         ["SetLabel"] = function(self, text) self.inner:SetLabel(text) Sync(self) end,
+        ["SetList"] = function(self, list, order, itemType) self.inner:SetList(list, order, itemType) end,
+        ["SetValue"] = function(self, value) self.inner:SetValue(value) end,
+        ["GetValue"] = function(self) return self.inner:GetValue() end,
         ["SetText"] = function(self, text) self.inner:SetText(text) end,
-        ["GetText"] = function(self) return self.inner:GetText() end,
         ["SetDisabled"] = function(self, v) self.inner:SetDisabled(v) end,
-        ["DisableButton"] = function(self, v) self.inner:DisableButton(v) end,
-        ["SetMaxLetters"] = function(self, n) self.inner:SetMaxLetters(n) end,
-        ["ClearFocus"] = function(self) self.inner:ClearFocus() end,
-        ["SetFocus"] = function(self) self.inner:SetFocus() end,
-        ["HighlightText"] = function(self, from, to) self.inner:HighlightText(from, to) end,
     }
 
     local function Constructor()
         local frame = CreateFrame("Frame", nil, UIParent)
         local widget = { frame = frame, type = Type }
-        local inner = AceGUI:Create("EditBox")
+        local inner = AceGUI:Create("Dropdown")
         inner.frame:SetParent(frame)
         inner.frame:ClearAllPoints()
         inner.frame:SetPoint("TOP", frame, "TOP", 0, 0)
-        inner:SetWidth(BOX_WIDTH)
+        inner:SetWidth(DROP_WIDTH)
         inner.label:SetJustifyH("CENTER")
         inner.frame:Show()
         widget.inner = inner
-        inner:SetCallback("OnEnterPressed", function(_, _, value) return widget:Fire("OnEnterPressed", value) end)
-        inner:SetCallback("OnTextChanged", function(_, _, value) widget:Fire("OnTextChanged", value) end)
+        inner:SetCallback("OnValueChanged", function(_, _, value) widget:Fire("OnValueChanged", value) end)
+        inner:SetCallback("OnOpened", function() widget:Fire("OnOpened") end)
+        inner:SetCallback("OnClosed", function() widget:Fire("OnClosed") end)
         inner:SetCallback("OnEnter", function() widget:Fire("OnEnter") end)
         inner:SetCallback("OnLeave", function() widget:Fire("OnLeave") end)
         for method, func in pairs(methods) do widget[method] = func end

@@ -16,11 +16,15 @@ L["Mouseover"] = true
 
 -- Options
 L["Bar number"] = true
-L["Action bar 1 to 10."] = true
+L["Action bar 1 to 10, or all of them."] = true
+L["All"] = true
+L["mixed"] = true
 L["Enter a bar number from 1 to 10."] = true
-L["Type a bar number and press Enter."] = true
+L["Enter a bar number from 1 to 10, or all."] = true
+L["Pick a bar."] = true
 L["Action Bar %d: %s"] = true
-L["Set a bar to %s. Use: /barvis %s <1-10>"] = true
+L["All action bars: %s"] = true
+L["Set a bar to %s. Use: /barvis %s <1-10|all>"] = true
 L["(applies after combat)"] = true
 L["Open the GUI"] = true
 L["Open the BarVis GUI window."] = true
